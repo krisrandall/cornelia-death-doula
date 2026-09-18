@@ -1,0 +1,37 @@
+---
+import { site, has } from '../site';
+
+interface Props {
+  line: string;
+  intro: string;
+  actions: { label: string; href: string; primary?: boolean }[];
+}
+
+const { line, intro, actions } = Astro.props;
+---
+
+<section class="hero">
+  <div class="wrap">
+    <h1 class="hero__line">{line}</h1>
+    <p class="hero__intro">{intro}</p>
+    {has(site.town) && <p class="hero__place">{site.town}{has(site.region) ? ` · ${site.region}` : ''}</p>}
+    {
+      actions.length > 0 && (
+        <div class="actions">
+          {actions.map((action) => (
+            <a class={action.primary ? 'btn btn--primary' : 'btn'} href={action.href}>
+              {action.label}
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  {/* A horizon: a low sun over a line. Decorative only. */}
+  <svg class="horizon" viewBox="0 0 400 220" fill="none" aria-hidden="true">
+    <circle cx="200" cy="150" r="62" stroke="currentColor" stroke-width="1.25" />
+    <path d="M0 150h120M280 150h120" stroke="currentColor" stroke-width="1.25" />
+    <path d="M40 178h320M90 200h220" stroke="currentColor" stroke-width="1" opacity="0.5" />
+  </svg>
+</section>

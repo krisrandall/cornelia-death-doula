@@ -1,0 +1,26 @@
+---
+import { site, has } from '../site';
+
+const here = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="wordmark" href="/">
+      {site.fullName}
+      <span>{site.role}{has(site.town) ? ` · ${site.town}` : ''}</span>
+    </a>
+    <nav class="nav" aria-label="Pages">
+      {
+        site.nav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={here === item.href.replace(/\/$/, '') ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

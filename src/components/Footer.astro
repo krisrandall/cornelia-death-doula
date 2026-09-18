@@ -1,0 +1,62 @@
+---
+import { site, has } from '../site';
+
+const year = new Date().getFullYear();
+const showContact = has(site.email) || has(site.phone);
+---
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      {
+        showContact && (
+          <div>
+            <h2>Get in touch</h2>
+            <ul>
+              {has(site.email) && (
+                <li>
+                  <a href={`mailto:${site.email}`}>{site.email}</a>
+                </li>
+              )}
+              {has(site.phone) && (
+                <li>
+                  <a href={`tel:${site.phone.replace(/\s+/g, '')}`}>{site.phone}</a>
+                </li>
+              )}
+            </ul>
+          </div>
+        )
+      }
+
+      <div>
+        <h2>Pages</h2>
+        <ul>
+          <li><a href="/">Home</a></li>
+          {site.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </div>
+
+      <div>
+        <h2>If you need help now</h2>
+        <p>{site.crisis.intro}</p>
+        <ul>
+          {
+            site.crisis.lines.map((line) => (
+              <li>
+                {line.name} <a href={`tel:${line.detail.replace(/\s+/g, '')}`}>{line.detail}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__fineprint">
+      {has(site.acknowledgement) && <p>{site.acknowledgement}</p>}
+      <p>
+        &copy; {year} {site.fullName}. I am not a doctor, a nurse or a
+        counsellor, and nothing here is medical, legal or financial advice.
+      </p>
+    </div>
+  </div>
+</footer>

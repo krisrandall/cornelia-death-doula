@@ -1,0 +1,25 @@
+---
+interface Props {
+  heading: string;
+  items: { title: string; body: string; href?: string; linkLabel?: string }[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<section class="section section--tint">
+  <div class="wrap">
+    <h2>{heading}</h2>
+    <ul class="cards">
+      {
+        items.map((item) => (
+          <li class="card">
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+            {item.href && <a href={item.href}>{item.linkLabel ?? 'Read more'} &rarr;</a>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

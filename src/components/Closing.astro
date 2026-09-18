@@ -1,0 +1,25 @@
+---
+interface Props {
+  heading: string;
+  body: string;
+  action?: { label: string; href: string; primary?: boolean };
+}
+
+const { heading, body, action } = Astro.props;
+---
+
+<section class="section section--tint closing">
+  <div class="wrap">
+    <h2>{heading}</h2>
+    <p>{body}</p>
+    {
+      action && (
+        <div class="actions">
+          <a class="btn btn--primary" href={action.href}>
+            {action.label}
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>

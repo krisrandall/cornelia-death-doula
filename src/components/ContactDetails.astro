@@ -1,0 +1,32 @@
+---
+import { site, has } from '../site';
+
+const hasAny = has(site.email) || has(site.phone);
+---
+
+<div class="panel">
+  {
+    hasAny ? (
+      <ul class="contact-list">
+        {has(site.email) && (
+          <li>
+            <span class="label">Email</span>
+            <a href={`mailto:${site.email}`}>{site.email}</a>
+          </li>
+        )}
+        {has(site.phone) && (
+          <li>
+            <span class="label">Phone</span>
+            <a href={`tel:${site.phone.replace(/\s+/g, '')}`}>{site.phone}</a>
+          </li>
+        )}
+      </ul>
+    ) : (
+      <p class="note">
+        <strong>Nothing to contact yet.</strong> Add an email address (and a phone number, if
+        you want one public) to <code>content/site.json</code> and it will appear here, in the
+        footer, and nowhere else you have to remember.
+      </p>
+    )
+  }
+</div>

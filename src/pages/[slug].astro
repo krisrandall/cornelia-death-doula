@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import DropInTimes from '../components/DropInTimes.astro';
+import ContactDetails from '../components/ContactDetails.astro';
+
+export const getStaticPaths = (async () => {
+  const pages = await getCollection('pages');
+  return pages
+    .filter((page) => page.data.slug !== 'home')
+    .map((page) => ({ params: { slug: page.data.slug }, props: { page } }));
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+const { title, description, intro, showDropInTimes, showContactDetails } = page.data;
+---
+
+<Base title={title} description={description}>
+  <header class="pagehead">
+    <div class="wrap">
+      <h1>{title}</h1>
+      {intro && <p class="lede">{intro}</p>}
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      {showDropInTimes && <DropInTimes />}
+      {showContactDetails && <ContactDetails />}
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </section>
+</Base>

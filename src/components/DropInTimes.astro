@@ -1,0 +1,30 @@
+---
+import { site, has } from '../site';
+
+const { show, confirmed, place, times } = site.dropIn;
+---
+
+{
+  show && (
+    <div class="panel">
+      <h2>When and where</h2>
+      {times.length > 0 && (
+        <ul class="times">
+          {times.map((time) => (
+            <li>{time}</li>
+          ))}
+        </ul>
+      )}
+      {confirmed ? (
+        has(place) && <p>I’ll be at {place}. Just come in.</p>
+      ) : (
+        <p class="note">
+          These hours are set aside and the place is still being confirmed
+          {has(place) ? ` \u2014 I am asking about ${place}` : ''}. Write to me before you come
+          and I will tell you exactly where to find me.
+        </p>
+      )}
+      <p class="note">Free. No appointment. Nothing to fill in.</p>
+    </div>
+  )
+}

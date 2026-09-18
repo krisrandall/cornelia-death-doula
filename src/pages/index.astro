@@ -1,0 +1,31 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Ways from '../components/Ways.astro';
+import Pull from '../components/Pull.astro';
+import Closing from '../components/Closing.astro';
+
+const pages = await getCollection('pages');
+const home = pages.find((page) => page.data.slug === 'home');
+if (!home) throw new Error('content/pages/home.md is missing its `slug: home`');
+
+const { Content } = await render(home);
+const { hero, ways, pull, closing, description } = home.data;
+---
+
+<Base title={home.data.title} description={description} isHome>
+  {hero && <Hero line={hero.line} intro={hero.intro} actions={hero.actions} />}
+
+  <section class="section">
+    <div class="wrap">
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </section>
+
+  {ways && <Ways heading={ways.heading} items={ways.items} />}
+  {pull && <Pull quote={pull.quote} />}
+  {closing && <Closing heading={closing.heading} body={closing.body} action={closing.action} />}
+</Base>

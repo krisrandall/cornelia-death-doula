@@ -1,0 +1,17 @@
+{
+  "name": "cornelia-death-doula",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website for Cornelia, death doula.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "astro": "^7.3.3"
+  }
+}

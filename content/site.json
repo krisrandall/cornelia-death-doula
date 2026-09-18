@@ -1,0 +1,54 @@
+{
+  "_readme": "Every fact about the business lives in this one file. Change it here and it changes everywhere on the site. Anything marked TODO still needs a real answer - see NEEDED-FROM-CORNELIA.md.",
+
+  "name": "Cornelia",
+  "fullName": "Cornelia",
+  "_todo_fullName": "TODO: surname, if Cornelia wants it on the site.",
+  "role": "Death Doula",
+  "pronouns": "she",
+
+  "town": "",
+  "_todo_town": "TODO: the town, and the wider area she will travel to (e.g. ’Mullumbimby’ and ’the Northern Rivers’). Leave blank and the site simply doesn’t mention a place.",
+  "region": "",
+
+  "email": "",
+  "_todo_email": "TODO: the email address people should write to.",
+  "phone": "",
+  "_todo_phone": "TODO: phone number, only if she wants it public. Leave blank to hide it.",
+
+  "url": "https://example.com",
+  "_todo_url": "TODO: the domain she already owns, e.g. https://corneliadeathdoula.com.au - used for links in search results and the sitemap.",
+
+  "nav": [
+    { "label": "About", "href": "/about" },
+    { "label": "How I can help", "href": "/how-i-can-help" },
+    { "label": "Drop-in hours", "href": "/drop-in-hours" },
+    { "label": "Get in touch", "href": "/contact" }
+  ],
+
+  "dropIn": {
+    "show": true,
+    "confirmed": false,
+    "_readme": "While ’confirmed’ is false the site says the times and place are still being settled. Change it to true once the hospital has said yes.",
+    "place": "the Down Under room at the hospital",
+    "_todo_place": "TODO: the hospital’s real name, once the room is agreed.",
+    "times": [
+      "Mondays, 9.00–10.00am",
+      "Thursdays, 7.30–8.30pm",
+      "Fridays, 2.00–3.00pm"
+    ],
+    "_todo_times": "TODO: a fourth hour was set aside in the planning conversation but not settled. Add it here when it is."
+  },
+
+  "acknowledgement": "I live and work on Aboriginal land, and I pay my respects to the Elders of this place — past, present and emerging — who have been caring for their dying and their dead here for longer than anyone can count.",
+  "_todo_acknowledgement": "TODO: name the Country once we know the town, e.g. ’the land of the Bundjalung people’.",
+
+  "crisis": {
+    "intro": "If you are in crisis right now, please don’t wait for me.",
+    "lines": [
+      { "name": "Emergency", "detail": "000" },
+      { "name": "Lifeline", "detail": "13 11 14" },
+      { "name": "Griefline", "detail": "1300 845 745" }
+    ]
+  }
+}
