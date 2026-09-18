@@ -45,7 +45,16 @@ be able to change it herself by talking to an AI**. Keep it that way.
 ```bash
 npm run dev      # http://localhost:4321
 npm run build    # -> dist/
+SITE_BASE=/cornelia-death-doula npm run build   # as GitHub Pages builds it
 ```
+
+Hosted on GitHub Pages at `krisrandall.github.io/cornelia-death-doula/` for now,
+so links must go through `href()` (`src/site.ts`) in components; markdown links
+stay root-relative (`/contact`) and a rehype plugin in `astro.config.mjs`
+prefixes them. That plugin also strips `<!-- notes -->` from the output.
+**Rendered markdown is cached in `node_modules/.astro/`** - after changing
+anything in the markdown pipeline, `rm -rf node_modules/.astro` or you will be
+looking at stale output.
 
 A build failure is usually YAML frontmatter: indented list markers must be
 `- `, and the em-dash pass that was run over the content once before is happy to

@@ -1,4 +1,6 @@
 ---
+import { href } from '../site';
+
 interface Props {
   heading: string;
   items: { title: string; body: string; href?: string; linkLabel?: string }[];
@@ -16,7 +18,7 @@ const { heading, items } = Astro.props;
           <li class="card">
             <h3>{item.title}</h3>
             <p>{item.body}</p>
-            {item.href && <a href={item.href}>{item.linkLabel ?? 'Read more'} &rarr;</a>}
+            {item.href && <a href={href(item.href)}>{item.linkLabel ?? 'Read more'} &rarr;</a>}
           </li>
         ))
       }

@@ -1,7 +1,9 @@
 # Builds the site and publishes it to GitHub Pages on every push to main.
-# Enable it once, in the repo: Settings -> Pages -> Source: "GitHub Actions".
-# For a custom domain, add public/CNAME containing the bare domain, and point
-# the domain's DNS at GitHub Pages at the registrar.
+# Live at https://krisrandall.github.io/cornelia-death-doula/ for now.
+#
+# WHEN CORNELIA'S OWN DOMAIN GOES ON: delete the two SITE_ lines below (the
+# site then lives at the root again), add public/CNAME containing the bare
+# domain, set the domain in Settings -> Pages, and point its DNS at GitHub.
 name: Deploy
 
 on:
@@ -29,6 +31,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          SITE_BASE: /cornelia-death-doula
+          SITE_URL: https://krisrandall.github.io
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -45,10 +45,13 @@ repo, build command `npm run build`, output directory `dist`. Point the domain
 at it in their dashboard. Every push deploys itself, so if she asks an AI to
 change a word and it pushes, the site updates.
 
-**GitHub Pages.** `.github/workflows/deploy.yml` is ready to go - enable Pages
-for the repo with "GitHub Actions" as the source. For a custom domain, add a
-`public/CNAME` file containing the bare domain and set the DNS `CNAME` record at
-the registrar.
+**GitHub Pages (what it runs on now).** Every push to `main` deploys to
+<https://krisrandall.github.io/cornelia-death-doula/> through
+`.github/workflows/deploy.yml`. Because that address has a sub-path, the
+workflow builds with `SITE_BASE=/cornelia-death-doula`; `astro.config.mjs` puts
+that prefix on every root link, including the ones in the markdown. When her own
+domain goes on, delete the two `SITE_` lines from the workflow, add a
+`public/CNAME` containing the bare domain, and point the DNS at GitHub.
 
 Before either: set `url` in `content/site.json` to the real domain, or the
 canonical links and social previews will point at `example.com`.

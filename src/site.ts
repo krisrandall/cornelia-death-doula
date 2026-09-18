@@ -30,3 +30,13 @@ export const wordmark = `${site.fullName} — ${site.role}`;
 /** Blank values in site.json simply switch their block off, rather than printing an empty line. */
 export const has = (value: string | undefined | null): value is string =>
   typeof value === 'string' && value.trim().length > 0;
+
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+/** A root-relative path ("/contact") as it must be written on this deployment. */
+export const href = (path: string): string =>
+  path.startsWith('/') && !path.startsWith('//') ? `${BASE}${path}` : path;
+
+/** The current page's path with the deployment's base taken off, for "you are here". */
+export const pagePath = (pathname: string): string =>
+  (pathname.startsWith(BASE) ? pathname.slice(BASE.length) : pathname).replace(/\/$/, '') || '/';

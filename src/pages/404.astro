@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { href } from '../site';
 ---
 
 <Base title="Page not found">
@@ -8,7 +9,7 @@ import Base from '../layouts/Base.astro';
       <h1>That page isn’t here</h1>
       <p class="lede">
         Which is a small loss on a site about larger ones. Try the
-        <a href="/">home page</a>, or just <a href="/contact">write to me</a>.
+        <a href={href('/')}>home page</a>, or just <a href={href('/contact')}>write to me</a>.
       </p>
     </div>
   </header>

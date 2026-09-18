@@ -1,5 +1,5 @@
 ---
-import { site, has } from '../site';
+import { site, has, href } from '../site';
 
 const year = new Date().getFullYear();
 const showContact = has(site.email) || has(site.phone);
@@ -31,8 +31,8 @@ const showContact = has(site.email) || has(site.phone);
       <div>
         <h2>Pages</h2>
         <ul>
-          <li><a href="/">Home</a></li>
-          {site.nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          <li><a href={href('/')}>Home</a></li>
+          {site.nav.map((item) => <li><a href={href(item.href)}>{item.label}</a></li>)}
         </ul>
       </div>
 

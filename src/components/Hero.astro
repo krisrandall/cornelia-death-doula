@@ -1,5 +1,5 @@
 ---
-import { site, has } from '../site';
+import { site, has, href } from '../site';
 
 interface Props {
   line: string;
@@ -19,7 +19,7 @@ const { line, intro, actions } = Astro.props;
       actions.length > 0 && (
         <div class="actions">
           {actions.map((action) => (
-            <a class={action.primary ? 'btn btn--primary' : 'btn'} href={action.href}>
+            <a class={action.primary ? 'btn btn--primary' : 'btn'} href={href(action.href)}>
               {action.label}
             </a>
           ))}

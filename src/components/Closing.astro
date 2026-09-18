@@ -1,4 +1,6 @@
 ---
+import { href } from '../site';
+
 interface Props {
   heading: string;
   body: string;
@@ -15,7 +17,7 @@ const { heading, body, action } = Astro.props;
     {
       action && (
         <div class="actions">
-          <a class="btn btn--primary" href={action.href}>
+          <a class="btn btn--primary" href={href(action.href)}>
             {action.label}
           </a>
         </div>

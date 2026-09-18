@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site, wordmark } from '../site';
+import { site, wordmark, href } from '../site';
 
 interface Props {
   title: string;
@@ -17,6 +17,9 @@ const metaDescription =
   description ??
   'I keep company with people who are dying, and with the people who love them.';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+// Built under a sub-path means this is the github.io preview, not the real site:
+// keep it out of search results until it is on Cornelia's own domain.
+const isPreview = import.meta.env.BASE_URL !== '/';
 ---
 
 <!doctype html>
@@ -26,8 +29,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
+    {isPreview && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={href('/favicon.svg')} type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={pageTitle} />

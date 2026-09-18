@@ -1,12 +1,12 @@
 ---
-import { site, has } from '../site';
+import { site, has, href, pagePath } from '../site';
 
-const here = Astro.url.pathname.replace(/\/$/, '') || '/';
+const here = pagePath(Astro.url.pathname);
 ---
 
 <header class="masthead">
   <div class="wrap masthead__inner">
-    <a class="wordmark" href="/">
+    <a class="wordmark" href={href('/')}>
       {site.fullName}
       <span>{site.role}{has(site.town) ? ` · ${site.town}` : ''}</span>
     </a>
@@ -14,7 +14,7 @@ const here = Astro.url.pathname.replace(/\/$/, '') || '/';
       {
         site.nav.map((item) => (
           <a
-            href={item.href}
+            href={href(item.href)}
             aria-current={here === item.href.replace(/\/$/, '') ? 'page' : undefined}
           >
             {item.label}
